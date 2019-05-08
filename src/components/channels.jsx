@@ -3,16 +3,14 @@ import React from 'react';
 export default class Channels extends React.Component {
   state = { visible: false }
 
-  onButton = (e) => {
-    //e.preventDefault();
+  onNewButton = () => {
     const { visible } = this.state;
-    console.log(visible);
     this.setState({ visible: !visible });
   }
 
-  onClick = (e) => {
-    //e.preventDefault();
-    alert('sdf');
+  onAddChannelButton = () => {
+    const { visible } = this.state;
+    this.setState({ visible: !visible });
   }
 
   render() {
@@ -23,11 +21,11 @@ export default class Channels extends React.Component {
     return (
       <div>
         {channels.map(channel => <button className="btn btn-outline-success w-100" type="button" key={channel.id}>{channel.name}</button>)}
-        <button className="btn btn-outline-dark w-100" type="button" style={style} onClick={this.onButton}>New</button>
+        <button className="btn btn-outline-dark w-100" type="button" style={style} onClick={this.onNewButton}>Новый канал</button>
         <form>
           <div className="input-group mb-3">
-            <input type="text" className="form-control" style={styleInput} placeholder="Имя нового канала" aria-label="Текст" aria-describedby="basic-addon2" />
-            <button className="btn btn-outline-dark" type="button" style={styleInput} onClick={this.onButton}>Add</button>
+            <input type="text" className="form-control" style={styleInput} placeholder="Название" aria-label="Текст" aria-describedby="basic-addon2" />
+            <button className="btn btn-outline-dark" type="button" style={styleInput} onClick={this.onAddChannelButton}>Добавить</button>
           </div>
         </form>
       </div>
