@@ -1,13 +1,13 @@
 import React from 'react';
-import appContext from '../appContext';
+import appContext from '../utils/appContext';
 
 export default class Form extends React.Component {
   static contextType = appContext;
 
   sendMessage = () => {
-    const { userName, queries } = this.context;
+    const { queries } = this.context;
     const { addChannel } = queries;
-    console.log(userName);
+    // console.log(userName);
 
     const data = {
       attributes: {
