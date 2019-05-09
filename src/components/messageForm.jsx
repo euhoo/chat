@@ -2,22 +2,38 @@ import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import appContext from '../utils/appContext';
 import * as actions from '../actions';
 
 const mapStateToProps = (state) => {
-  const props = {};
+  const props = {
+    currentChannelId: state.currentChannelId,
+  };
   return props;
 };
 
 const actionCreators = {
-  addTask: actions.addTask,
+  addMessage: actions.addMessage,
 };
 
-class NewTaskForm extends React.Component {
-   handleSubmit = (values) => {
-     const { addTask, reset } = this.props;
-     const task = { ...values, id: _.uniqueId(), state: 'active' };
-     addTask({ task });
+class NewMessagesForm extends React.Component {
+  static contextType = appContext;
+
+   handleSubmit = (value) => {
+     const { userName, queries } = this.context;
+     const { addMessage } = queries;
+     const { reset, currentChannelId } = this.props;
+     
+     const data = {
+       id: currentChannelId,
+       attributes: {
+         text: value.text,
+         name: userName,
+         channelId: currentChannelId,
+       },
+     };
+     console.log(data.attributes.channelId);
+     addMessage(data);
      reset();
    }
 
@@ -34,7 +50,7 @@ class NewTaskForm extends React.Component {
    }
 }
 
-const ConnectedNewTaskForm = connect(mapStateToProps, actionCreators)(NewTaskForm);
+const ConnectedNewTaskForm = connect(mapStateToProps, actionCreators)(NewMessagesForm);
 export default reduxForm({
   form: 'newTask',
 })(ConnectedNewTaskForm);

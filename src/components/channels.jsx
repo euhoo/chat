@@ -34,6 +34,7 @@ export default class Channels extends React.Component {
       },
     };
     this.setState({ visible: !visible, value: '' });
+    if (data.attributes.name.length === 0) return;
     addChannel(data);
   }
 
@@ -44,7 +45,8 @@ export default class Channels extends React.Component {
     const style = visible ? { display: 'none' } : { display: '' };
     return (
       <div>
-        {channels.map((channel) => {
+        {channels.map((item) => {
+          const channel = Object.values(item)[0];
           const { removable, id } = channel;
           const delButton = removable ? <button className="btn btn-outline-danger" style={{ width: '20%' }} type="button" onClick={this.deleteChannel(id)}>del</button> : null;
           const channelButtonStyle = removable ? { width: '80%' } : { width: '100%' };

@@ -1,7 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app';
+import { Provider } from 'react-redux';
+// import App from './app';
+import App from './messageForm';
 
-export default (state) => {
-  ReactDOM.render(<App state={state} />, document.getElementById('chat'));
+export default (store) => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('chat'),
+  );
 };

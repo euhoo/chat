@@ -4,8 +4,11 @@ import Form from './form';
 
 
 const app = (props) => {
-  const { state, name } = props;
-  const { channels, messages } = state;
+  const { state } = this.props;
+  console.log(state);
+  // const { state } = props;
+  const messages = state.messages.byId;
+  const channels = state.channels.byId;
   return (
     <React.Fragment>
 
@@ -22,7 +25,7 @@ const app = (props) => {
         <div className="row no-gutters" style={{ height: '20vh' }}>
           <div className="col-3" style={{ backgroundColor: 'grey' }} />
           <div className="col-9" style={{ backgroundColor: 'darkgrey' }}>
-            <Form name={name} />
+            <Form />
           </div>
         </div>
       </div>
