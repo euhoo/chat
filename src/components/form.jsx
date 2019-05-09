@@ -5,9 +5,9 @@ export default class Form extends React.Component {
   static contextType = appContext;
 
   sendMessage = () => {
-    const { name, queries } = this.context;
+    const { userName, queries } = this.context;
     const { addChannel } = queries;
-    console.log(name);
+    console.log(userName);
 
     const data = {
       attributes: {

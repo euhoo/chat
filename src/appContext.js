@@ -8,7 +8,7 @@ if (!cookies.get('name')) {
   const randomName = faker.name.findName();
   cookies.set('name', randomName);
 }
-const name = cookies.get('name');
+export const userName = cookies.get('name');
 
 
-export default React.createContext({ name, queries });
+export default React.createContext({ userName, queries });

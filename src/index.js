@@ -5,9 +5,11 @@ import gon from 'gon';
 // import cookies from 'js-cookie';
 // import io from 'socket.io';
 import chat from './components/index';
+import normalize from './normalize';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
-
+const store = normalize(gon);
+console.log(store);
 chat(gon);
