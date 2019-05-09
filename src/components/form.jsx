@@ -1,18 +1,20 @@
 import React from 'react';
-import axios from 'axios';
-import routes from '../routes';
+import appContext from '../appContext';
 
 export default class Form extends React.Component {
+  static contextType = appContext;
+
   sendMessage = () => {
-    const { name } = this.props;
+    const { name, queries } = this.context;
+    const { addChannel } = queries;
+    console.log(name);
+
     const data = {
       attributes: {
-        name: 'qefwef',
+        name: 'q111',
       },
     };
-    axios.post(routes.channels, { data })
-      .then(response => console.log(response))
-      .then(() => console.log(window.gon));  // проверяю, что добавляет
+    addChannel(data);
   };
 
   render() {
