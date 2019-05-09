@@ -1,12 +1,18 @@
 import React from 'react';
 import axios from 'axios';
+import routes from '../routes';
 
 export default class Form extends React.Component {
   sendMessage = () => {
     const { name } = this.props;
-    console.log(name);
-    axios.get('api/v1/channels/')
-      .then(response => console.log(response.body));
+    const data = {
+      attributes: {
+        name: 'qefwef',
+      },
+    };
+    axios.post(routes.channels, { data })
+      .then(response => console.log(response))
+      .then(() => console.log(window.gon));  // проверяю, что добавляет
   };
 
   render() {
