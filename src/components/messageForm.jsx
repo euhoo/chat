@@ -13,16 +13,16 @@ const mapStateToProps = (state) => {
 };
 
 const actionCreators = {
-  addMessage: actions.addMessage,
+  addMessageAction: actions.addMessageAction,
 };
 
 class NewMessagesForm extends React.Component {
   static contextType = appContext;
 
    handleSubmit = (value) => {
-     const { userName, queries } = this.context;
-     const { addMessage } = queries;
+     const { userName, queries: { addMessage } } = this.context;
      const { reset, currentChannelId } = this.props;
+     // const { addMessage } = queries;
      
      const data = {
        id: currentChannelId,
@@ -32,7 +32,6 @@ class NewMessagesForm extends React.Component {
          channelId: currentChannelId,
        },
      };
-     console.log(data.attributes.channelId);
      addMessage(data);
      reset();
    }
@@ -52,5 +51,5 @@ class NewMessagesForm extends React.Component {
 
 const ConnectedNewTaskForm = connect(mapStateToProps, actionCreators)(NewMessagesForm);
 export default reduxForm({
-  form: 'newTask',
+  form: 'NewMessagesForm',
 })(ConnectedNewTaskForm);

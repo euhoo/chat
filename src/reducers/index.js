@@ -5,7 +5,7 @@ import { reducer as formReducer } from 'redux-form';
 import * as actions from '../actions';
 
 const channels = handleActions({
-  [actions.addChannel]: (state, action) => {
+  [actions.addChannelAction]: (state, action) => {
     const { byId, allIds } = state;
     const { channel } = action.payload;
     return {
@@ -13,7 +13,7 @@ const channels = handleActions({
       allIds: [channel.id, ...allIds],
     };
   },
-  [actions.removeChannel]: (state, action) => {
+  [actions.removeChannelAction]: (state, action) => {
     const { byId, allIds } = state;
     const { id } = action.payload;
     return {
@@ -21,7 +21,7 @@ const channels = handleActions({
       allIds: _.without(allIds, id),
     };
   },
-  [actions.renameChannel]: (state, action) => {
+  [actions.renameChannelAction]: (state, action) => {
     const { id } = action.payload;
     const task = state.byId[id];
     const newState = task.state === 'active' ? 'finished' : 'active';
@@ -34,18 +34,19 @@ const channels = handleActions({
 }, { byId: {}, allIds: [] });
 
 const messages = handleActions({
-  [actions.addMessage]: (state, action) => {
-    const { attributes } = action.payload;
+  [actions.addMessageAction]: (state, action) => {
+    console.log(action);
+    const { attributes } = action.payload.data;
     return [...state, attributes];
   },
-  [actions.removeChannel]: (state, action) => {
+  [actions.removeChannelAction]: (state, action) => {
     const { id } = action.payload;
     return state.filter(message => message.channelId !== id);
   },
 }, []);
 
 const currentChannelId = handleActions({
-  [actions.changeChannel]: (state, action) => {
+  [actions.changeChannelAction]: (state, action) => {
     const { attributes } = action.payload;
     return attributes;
   },
