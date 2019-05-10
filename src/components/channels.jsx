@@ -31,9 +31,11 @@ class Channels extends React.Component {
     }
 
     renameChannel = id => () => {
+      /*
       const { queries } = this.context;
       const { renameChannel } = queries;
       renameChannel(id);
+      */
     }
 
     changeChannel = id => () => {
