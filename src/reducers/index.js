@@ -9,13 +9,13 @@ const channels = handleActions({
     const { byId, allIds } = state;
     const channel = action.payload.data.attributes;
     return {
-      byId: [...byId, { [channel.id]: channel }],
+      byId: { ...byId, [channel.id]: channel },
       allIds: [channel.id, ...allIds],
     };
   },
   [actions.removeChannelAction]: (state, action) => {
     const { byId, allIds } = state;
-    const { id } = action.payload;
+    const { id } = action.payload.data;
     return {
       byId: _.omit(byId, id),
       allIds: _.without(allIds, id),
@@ -39,7 +39,8 @@ const messages = handleActions({
     return [attributes, ...state];
   },
   [actions.removeChannelAction]: (state, action) => {
-    const { id } = action.payload;
+    
+    const { id } = action.payload.data;
     return state.filter(message => message.channelId !== id);
   },
 }, []);

@@ -1,11 +1,15 @@
 import * as actions from '../actions';
 
 export const renameChannel = (data) => {
-  console.log(data);
+  // console.log(data);
 };
 
-export const removeChannel = (data) => {
-  console.log(data);
+export const removeChannel = (data, store) => {
+  
+  const { removeChannelAction } = actions;
+  // console.log(data.data.id);
+  store.dispatch(removeChannelAction(data));
+  
 };
 
 export const newChannel = (data, store) => {

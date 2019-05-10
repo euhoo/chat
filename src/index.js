@@ -25,3 +25,4 @@ chat(store);
 const socket = io();
 socket.on('newChannel', data => newChannel(data, store));
 socket.on('newMessage', data => addMessage(data, store));
+socket.on('removeChannel', data => removeChannel(data, store));

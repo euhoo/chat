@@ -17,23 +17,19 @@ const actionCreators = {
   changeChannelAction: actions.changeChannelAction,
 };
 
-class ChatField extends React.Component {
-  render() {
-    const { messages } = this.props;
-    console.log(messages);
-    return (
-      <React.Fragment>
-        {messages.map(message => (
-          <div key={message.id}>
-            {message.name}
+const ChatField = (props) => {
+  const { messages } = props;
+  return (
+    <React.Fragment>
+      {messages.map(message => (
+        <div key={message.id}>
+          {message.name}
 :
-            {' '}
-            {message.text}
-          </div>
-        ))}
-      </React.Fragment>
-    );
-  }
-}
-
+          {' '}
+          {message.text}
+        </div>
+      ))}
+    </React.Fragment>
+  );
+};
 export default connect(mapStateToProps, actionCreators)(ChatField);

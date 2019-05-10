@@ -24,30 +24,41 @@ class Channels extends React.Component {
     static contextType = appContext;
 
     deleteChannel = id => () => {
-      /*
+      
       // console.log(id);
       const { queries } = this.context;
       const { deleteChannel } = queries;
       deleteChannel(id);
-      */
+
+    }
+
+    editChannel = id => {
+
     }
 
     render() {
-      const { channels: { byId } } = this.props;
+      const { channels, currentChannelId } = this.props;
+      const { byId } = channels;
+      const keys = Object.keys(byId);
       return (
         <div>
 
-          {byId.map((item) => {
-            const channel = Object.values(item)[0];
+          {keys.map((key) => {
+            const channel = byId[key];
             const { removable, id } = channel;
-            const delButton = removable ? <button className="btn btn-outline-danger" style={{ width: '20%' }} type="button" onClick={this.deleteChannel(id)}>del</button> : null;
-            const channelButtonStyle = removable ? { width: '80%' } : { width: '100%' };
+            const toggleButton = <button className="btn btn-outline-warning" style={{ width: '12%' }} type="button" onClick={this.editChannel(id)}>E</button>;
+            const delButton = removable ? <button className="btn btn-outline-danger" style={{ width: '12%' }} type="button" onClick={this.deleteChannel(id)}>D</button> : null;
+            const width = removable ? { width: '76%' } : { width: '88%' };
+            const outline = currentChannelId === id ? '' : 'outline-';
+            const classes = `btn btn-${outline}success`;
+            const channelButtonStyle = { width };
             return (
               <React.Fragment key={channel.id}>
-                <div className="w-100">
-                  <button className="btn btn-outline-success" style={channelButtonStyle} type="button">{channel.name}</button>
+                <p className="w-100">
+                  <button className={classes} style={channelButtonStyle} type="button">{channel.name}</button>
                   {delButton}
-                </div>
+                  {toggleButton}
+                </p>
               </React.Fragment>
             );
           })}
