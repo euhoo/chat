@@ -1,6 +1,7 @@
 import React from 'react';
 import Channels from './channels';
 import NewMessagesForm from './newMessagesForm';
+import ChatField from './chatField';
 
 
 const app = () => {
@@ -12,18 +13,18 @@ const app = () => {
 
       <div className="row no-gutters" style={{ height: '5vh' }} />
       <div className="container-fluid">
-        <div className="row no-gutters" style={{ height: '70vh' }}>
-          <div className="col-3 mx-auto" style={{ backgroundColor: 'grey' }}>
+        <div className="row no-gutters">
+          <div className="col-3 mx-auto" style={{ backgroundColor: 'white' }}>
             <Channels />
           </div>
-          <div className="col-9" style={{ backgroundColor: 'lightgrey' }}>
-            чат
+          <div className="col-9" style={{ backgroundColor: 'white' }}>
+          <NewMessagesForm />
+            <ChatField />
           </div>
         </div>
-        <div className="row no-gutters" style={{ height: '20vh' }}>
-          <div className="col-3" style={{ backgroundColor: 'grey' }} />
-          <div className="col-9" style={{ backgroundColor: 'darkgrey' }}>
-            <NewMessagesForm />
+        <div className="row no-gutters">
+          <div className="col-3" style={{ backgroundColor: 'white' }} />
+          <div className="col-9" style={{ backgroundColor: 'white' }}>
           </div>
         </div>
       </div>
