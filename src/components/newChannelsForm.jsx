@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { withTranslation } from 'react-i18next';
 import appContext from '../utils/appContext';
 import { addChannelAction } from '../actions';
 
@@ -10,6 +11,8 @@ const actionCreators = {
   addChannelAction,
 };
 
+@connect(mapStateToProps, actionCreators)
+@withTranslation()
 class NewChannelsForm extends React.Component {
   static contextType = appContext;
 
@@ -38,7 +41,6 @@ class NewChannelsForm extends React.Component {
    }
 }
 
-const ConnectedNewChannelsForm = connect(mapStateToProps, actionCreators)(NewChannelsForm);
 export default reduxForm({
   form: 'NewChannelsForm',
-})(ConnectedNewChannelsForm);
+})(NewChannelsForm);

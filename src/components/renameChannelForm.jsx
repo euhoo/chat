@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { withTranslation } from 'react-i18next';
 import appContext from '../utils/appContext';
 import { renameChannelAction } from '../actions';
 
@@ -15,6 +16,8 @@ const actionCreators = {
   renameChannelAction,
 };
 
+@connect(mapStateToProps, actionCreators)
+@withTranslation()
 class RenameChannelForm extends React.Component {
   static contextType = appContext;
 
@@ -44,7 +47,6 @@ class RenameChannelForm extends React.Component {
    }
 }
 
-const ConnectedRenameChannelForm = connect(mapStateToProps, actionCreators)(RenameChannelForm);
 export default reduxForm({
   form: 'RenameChannelForm',
-})(ConnectedRenameChannelForm);
+})(RenameChannelForm);

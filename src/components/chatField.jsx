@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 import {
   addMessageAction, removeChannelAction, renameChannelAction, changeChannelAction,
 } from '../actions';
@@ -19,20 +20,24 @@ const actionCreators = {
   changeChannelAction,
 };
 
-const ChatField = (props) => {
-  const { messages, currentChannelId } = props;
-  const filteredMessages = messages.filter(message => message.channelId === currentChannelId);
-  return (
-    <React.Fragment>
-      {filteredMessages.map(message => (
-        <div key={message.id}>
-          {message.name}
+@connect(mapStateToProps, actionCreators)
+@withTranslation()
+class ChatField extends React.Component {
+  render() {
+    const { messages, currentChannelId } = this.props;
+    const filteredMessages = messages.filter(message => message.channelId === currentChannelId);
+    return (
+      <React.Fragment>
+        {filteredMessages.map(message => (
+          <div key={message.id}>
+            {message.name}
 :
-          {' '}
-          {message.text}
-        </div>
-      ))}
-    </React.Fragment>
-  );
-};
-export default connect(mapStateToProps, actionCreators)(ChatField);
+            {' '}
+            {message.text}
+          </div>
+        ))}
+      </React.Fragment>
+    );
+  }
+}
+export default ChatField;

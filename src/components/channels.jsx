@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 import appContext from '../utils/appContext';
 import {
   addMessageAction, removeChannelAction, renameChannelAction, changeChannelAction,
@@ -20,6 +21,8 @@ const actionCreators = {
   changeChannelAction,
 };
 
+@connect(mapStateToProps, actionCreators)
+@withTranslation()
 class Channels extends React.Component {
     static contextType = appContext;
 
@@ -69,4 +72,4 @@ class Channels extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, actionCreators)(Channels);
+export default Channels;

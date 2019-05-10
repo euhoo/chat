@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { withTranslation } from 'react-i18next';
 import appContext from '../utils/appContext';
 import { addMessageAction } from '../actions';
 
@@ -15,6 +16,8 @@ const actionCreators = {
   addMessageAction,
 };
 
+@connect(mapStateToProps, actionCreators)
+@withTranslation()
 class NewMessagesForm extends React.Component {
   static contextType = appContext;
 
@@ -46,7 +49,6 @@ class NewMessagesForm extends React.Component {
    }
 }
 
-const ConnectedNewMessagesForm = connect(mapStateToProps, actionCreators)(NewMessagesForm);
 export default reduxForm({
   form: 'NewMessagesForm',
-})(ConnectedNewMessagesForm);
+})(NewMessagesForm);
