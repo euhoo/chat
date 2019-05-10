@@ -15,6 +15,7 @@ if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
+// eslint-disable-next-line no-underscore-dangle
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__;
 
 const normilizedStore = normalize(gon);
@@ -28,5 +29,5 @@ const store = createStore(
 );
 chat(store);
 const socket = io();
-socket.on('removeChannel', removeChannel);
+socket.on('newChannel', data => newChannel(data, store));
 socket.on('newMessage', data => addMessage(data, store));
