@@ -28,11 +28,10 @@ class NewChannelsForm extends React.Component {
    render() {
      const { handleSubmit } = this.props;
      return (
-       <form className="form-inline" onSubmit={handleSubmit(this.handleSubmit)}>
+       <form className="form-inline " onSubmit={handleSubmit(this.handleSubmit)}>
          <div className="form-group mx-3">
-           <Field name="text" required component="input" type="text" />
+           <Field name="text" required component="input" type="text" value="dfd" />
          </div>
-         <input type="submit" className="btn btn-outline-secondary" value="Отправить" />
        </form>
      );
    }

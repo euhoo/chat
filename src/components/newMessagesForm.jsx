@@ -40,7 +40,6 @@ class NewMessagesForm extends React.Component {
          <div className="form-group mx-3">
            <Field name="text" required component="input" type="text" />
          </div>
-         <input type="submit" className="btn btn-outline-secondary" value="Отправить" />
        </form>
      );
    }
