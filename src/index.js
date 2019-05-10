@@ -8,7 +8,9 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import chat from './components/index';
 import normalize from './utils/normalize';
-import { newChannel, removeChannel, renameChannel, addMessage } from './utils/serverAnswerFunctions';
+import {
+ newChannel, removeChannel, renameChannel, addMessage 
+} from './utils/serverAnswerFunctions';
 import reducers from './reducers';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -21,8 +23,10 @@ const store = createStore(
   normilizedStore,
   applyMiddleware(thunk),
 );
+
 chat(store);
 const socket = io();
 socket.on('newChannel', data => newChannel(data, store));
 socket.on('newMessage', data => addMessage(data, store));
 socket.on('removeChannel', data => removeChannel(data, store));
+socket.on('renameChannel', data => renameChannel(data, store));

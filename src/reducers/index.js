@@ -22,14 +22,10 @@ const channels = handleActions({
     };
   },
   [actions.renameChannelAction]: (state, action) => {
-    const { id } = action.payload;
-    const task = state.byId[id];
-    const newState = task.state === 'active' ? 'finished' : 'active';
-    const updatedTask = { ...task, state: newState };
-    return {
-      ...state,
-      byId: { ...state.byId, [task.id]: updatedTask },
-    };
+    const { id, name } = action.payload.data.attributes;
+    const newState = { ...state };
+    newState.byId[id].name = name;
+    return newState;
   },
 }, { byId: {}, allIds: [] });
 
@@ -39,7 +35,6 @@ const messages = handleActions({
     return [attributes, ...state];
   },
   [actions.removeChannelAction]: (state, action) => {
-    
     const { id } = action.payload.data;
     return state.filter(message => message.channelId !== id);
   },
