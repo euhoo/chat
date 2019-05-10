@@ -24,16 +24,18 @@ class Channels extends React.Component {
     static contextType = appContext;
 
     deleteChannel = id => () => {
-      
-      // console.log(id);
       const { queries } = this.context;
       const { deleteChannel } = queries;
       deleteChannel(id);
-
     }
 
-    editChannel = id => {
+    editChannel = (id) => {
+      
+    }
 
+    changeChannel = (id) => {
+      const { changeChannelAction } = this.props;
+      changeChannelAction(id);
     }
 
     render() {
@@ -45,7 +47,7 @@ class Channels extends React.Component {
 
           {keys.map((key) => {
             const channel = byId[key];
-            const { removable, id } = channel;
+            const { removable, id, name } = channel;
             const toggleButton = <button className="btn btn-outline-warning" style={{ width: '12%' }} type="button" onClick={this.editChannel(id)}>E</button>;
             const delButton = removable ? <button className="btn btn-outline-danger" style={{ width: '12%' }} type="button" onClick={this.deleteChannel(id)}>D</button> : null;
             const width = removable ? { width: '76%' } : { width: '88%' };
@@ -53,9 +55,9 @@ class Channels extends React.Component {
             const classes = `btn btn-${outline}success`;
             const channelButtonStyle = { width };
             return (
-              <React.Fragment key={channel.id}>
+              <React.Fragment key={id}>
                 <p className="w-100">
-                  <button className={classes} style={channelButtonStyle} type="button">{channel.name}</button>
+                  <button className={classes} style={channelButtonStyle} type="button" onClick={() => this.changeChannel(id)}>{name}</button>
                   {delButton}
                   {toggleButton}
                 </p>

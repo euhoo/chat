@@ -18,10 +18,11 @@ const actionCreators = {
 };
 
 const ChatField = (props) => {
-  const { messages } = props;
+  const { messages, currentChannelId } = props;
+  const filteredMessages = messages.filter(message => message.channelId === currentChannelId);
   return (
     <React.Fragment>
-      {messages.map(message => (
+      {filteredMessages.map(message => (
         <div key={message.id}>
           {message.name}
 :
