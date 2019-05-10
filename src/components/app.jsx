@@ -13,8 +13,8 @@ const app = () => (
           <Channels />
         </div>
         <div className="col-9" style={{ backgroundColor: 'white' }}>
-          <NewMessagesForm />
-          <ChatField />
+          {/* <NewMessagesForm />
+          <ChatField /> */}
         </div>
       </div>
       <div className="row no-gutters">
