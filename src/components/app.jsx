@@ -1,14 +1,12 @@
 import React from 'react';
 import Channels from './channels';
-import Form from './form';
+import NewMessagesForm from './newMessagesForm';
 
 
-const app = (props) => {
-  const { state } = this.props;
-  console.log(state);
+const app = () => {
   // const { state } = props;
-  const messages = state.messages.byId;
-  const channels = state.channels.byId;
+ // const messages = state.messages.byId;
+ // const channels = state.channels.byId;
   return (
     <React.Fragment>
 
@@ -16,7 +14,7 @@ const app = (props) => {
       <div className="container-fluid">
         <div className="row no-gutters" style={{ height: '70vh' }}>
           <div className="col-3 mx-auto" style={{ backgroundColor: 'grey' }}>
-            <Channels channels={channels} messages={messages} />
+            <Channels />
           </div>
           <div className="col-9" style={{ backgroundColor: 'lightgrey' }}>
             чат
@@ -25,7 +23,7 @@ const app = (props) => {
         <div className="row no-gutters" style={{ height: '20vh' }}>
           <div className="col-3" style={{ backgroundColor: 'grey' }} />
           <div className="col-9" style={{ backgroundColor: 'darkgrey' }}>
-            <Form />
+            <NewMessagesForm />
           </div>
         </div>
       </div>

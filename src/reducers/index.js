@@ -7,9 +7,9 @@ import * as actions from '../actions';
 const channels = handleActions({
   [actions.addChannelAction]: (state, action) => {
     const { byId, allIds } = state;
-    const { channel } = action.payload;
+    const channel = action.payload.data.attributes;
     return {
-      byId: { ...byId, [channel.id]: channel },
+      byId: [...byId, { [channel.id]: channel }],
       allIds: [channel.id, ...allIds],
     };
   },
@@ -35,7 +35,6 @@ const channels = handleActions({
 
 const messages = handleActions({
   [actions.addMessageAction]: (state, action) => {
-    console.log(action);
     const { attributes } = action.payload.data;
     return [...state, attributes];
   },

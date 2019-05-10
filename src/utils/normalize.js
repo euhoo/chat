@@ -10,7 +10,7 @@ export default ({ channels, messages, currentChannelId }) => {
   });
 
   const allChannellsIds = channels.map(item => item.id);
-  const byChannelsId = channels.map(channelFunc, {});
+  const byChannelsId = channels.map(channelFunc);
 
   const store = {
     channels: { byId: byChannelsId, allIds: allChannellsIds },

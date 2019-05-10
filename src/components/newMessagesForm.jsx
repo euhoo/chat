@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import appContext from '../utils/appContext';
@@ -22,8 +21,6 @@ class NewMessagesForm extends React.Component {
    handleSubmit = (value) => {
      const { userName, queries: { addMessage } } = this.context;
      const { reset, currentChannelId } = this.props;
-     // const { addMessage } = queries;
-     
      const data = {
        id: currentChannelId,
        attributes: {
@@ -43,13 +40,13 @@ class NewMessagesForm extends React.Component {
          <div className="form-group mx-3">
            <Field name="text" required component="input" type="text" />
          </div>
-         <input type="submit" className="btn btn-primary btn-sm" value="Add" />
+         <input type="submit" className="btn btn-outline-secondary" value="Отправить" />
        </form>
      );
    }
 }
 
-const ConnectedNewTaskForm = connect(mapStateToProps, actionCreators)(NewMessagesForm);
+const ConnectedNewMessagesForm = connect(mapStateToProps, actionCreators)(NewMessagesForm);
 export default reduxForm({
   form: 'NewMessagesForm',
-})(ConnectedNewTaskForm);
+})(ConnectedNewMessagesForm);
