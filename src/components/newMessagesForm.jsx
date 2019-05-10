@@ -2,24 +2,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import appContext from '../utils/appContext';
-import * as actions from '../actions';
+import { addMessageAction } from '../actions';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ currentChannelId }) => {
   const props = {
-    currentChannelId: state.currentChannelId,
+    currentChannelId,
   };
   return props;
 };
 
 const actionCreators = {
-  addMessageAction: actions.addMessageAction,
+  addMessageAction,
 };
 
 class NewMessagesForm extends React.Component {
   static contextType = appContext;
 
    handleSubmit = (value) => {
-     const { userName, queries: { addMessage } } = this.context;
+     const { userName, queries } = this.context;
+     const { addMessage } = queries;
      const { reset, currentChannelId } = this.props;
      const data = {
        id: currentChannelId,

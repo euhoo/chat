@@ -4,14 +4,11 @@ import appContext from '../utils/appContext';
 import {
   addMessageAction, removeChannelAction, renameChannelAction, changeChannelAction,
 } from '../actions';
-import NewChannelsForm from './newChannelsForm';
-import RenameChannelForm from './renameChannelForm';
 
-
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ channels, currentChannelId }) => {
   const props = {
-    channels: state.channels,
-    currentChannelId: state.currentChannelId,
+    channels,
+    currentChannelId,
   };
   return props;
 };
@@ -26,46 +23,48 @@ const actionCreators = {
 class Channels extends React.Component {
     static contextType = appContext;
 
-    deleteChannel = id => () => {
-      const { queries } = this.context;
-      const { deleteChannel } = queries;
-      deleteChannel(id);
-    }
-
     changeChannel = id => () => {
       // eslint-disable-next-line no-shadow
       const { changeChannelAction } = this.props;
       changeChannelAction(id);
     }
 
+    deleteChannel = id => () => {
+      const { queries } = this.context;
+      // eslint-disable-next-line no-shadow
+      const { channels, changeChannelAction } = this.props;
+      const { allIds } = channels;
+      const filtered = allIds.filter(item => item !== id);
+      const idForChange = filtered[0];
+      const { deleteChannel } = queries;
+      changeChannelAction(idForChange);
+      deleteChannel(id);
+    }
+
+
     render() {
       const { channels, currentChannelId } = this.props;
       const { byId } = channels;
       const keys = Object.keys(byId);
       return (
-        <div>
-          <RenameChannelForm />
+        <>
           {keys.map((key) => {
             const channel = byId[key];
             const { removable, id, name } = channel;
-            const toggleButton = <button className="btn btn-outline-warning" style={{ width: '12%' }} type="button">E</button>;
-            const delButton = removable ? <button className="btn btn-outline-danger" style={{ width: '12%' }} type="button" onClick={this.deleteChannel(id)}>D</button> : null;
             const width = removable ? { width: '76%' } : { width: '88%' };
-            const outline = currentChannelId === id ? '' : 'outline-';
-            const classes = `btn btn-${outline}success`;
+            const classes = `btn btn-${currentChannelId === id ? '' : 'outline-'}success`;
             const channelButtonStyle = { width };
             return (
               <React.Fragment key={id}>
                 <p className="w-100">
                   <button className={classes} style={channelButtonStyle} type="button" onClick={this.changeChannel(id)}>{name}</button>
-                  {delButton}
-                  {toggleButton}
+                  {removable ? <button className="btn btn-outline-danger" style={{ width: '12%' }} type="button" onClick={this.deleteChannel(id)}>D</button> : null}
+                  <button className="btn btn-outline-warning" style={{ width: '12%' }} type="button">E</button>
                 </p>
               </React.Fragment>
             );
           })}
-          <NewChannelsForm />
-        </div>
+        </>
       );
     }
 }

@@ -1,20 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import {
+  addMessageAction, removeChannelAction, renameChannelAction, changeChannelAction,
+} from '../actions';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ messages, currentChannelId }) => {
   const props = {
-    messages: state.messages,
-    currentChannelId: state.currentChannelId,
+    messages,
+    currentChannelId,
   };
   return props;
 };
 
 const actionCreators = {
-  addMessageAction: actions.addMessageAction,
-  removeChannelAction: actions.removeChannelAction,
-  renameChannelAction: actions.renameChannelAction,
-  changeChannelAction: actions.changeChannelAction,
+  addMessageAction,
+  removeChannelAction,
+  renameChannelAction,
+  changeChannelAction,
 };
 
 const ChatField = (props) => {
