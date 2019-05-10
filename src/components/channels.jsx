@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import appContext from '../utils/appContext';
-import * as actions from '../actions';
+import {
+  addMessageAction, removeChannelAction, renameChannelAction, changeChannelAction,
+} from '../actions';
 import NewChannelsForm from './newChannelsForm';
 import RenameChannelForm from './renameChannelForm';
 
@@ -15,10 +17,10 @@ const mapStateToProps = (state) => {
 };
 
 const actionCreators = {
-  addMessageAction: actions.addMessageAction,
-  removeChannelAction: actions.removeChannelAction,
-  renameChannelAction: actions.renameChannelAction,
-  changeChannelAction: actions.changeChannelAction,
+  addMessageAction,
+  removeChannelAction,
+  renameChannelAction,
+  changeChannelAction,
 };
 
 class Channels extends React.Component {
@@ -30,15 +32,8 @@ class Channels extends React.Component {
       deleteChannel(id);
     }
 
-    renameChannel = id => () => {
-      /*
-      const { queries } = this.context;
-      const { renameChannel } = queries;
-      renameChannel(id);
-      */
-    }
-
     changeChannel = id => () => {
+      // eslint-disable-next-line no-shadow
       const { changeChannelAction } = this.props;
       changeChannelAction(id);
     }
@@ -53,7 +48,7 @@ class Channels extends React.Component {
           {keys.map((key) => {
             const channel = byId[key];
             const { removable, id, name } = channel;
-            const toggleButton = <button className="btn btn-outline-warning" style={{ width: '12%' }} type="button" onClick={this.renameChannel(id)}>E</button>;
+            const toggleButton = <button className="btn btn-outline-warning" style={{ width: '12%' }} type="button">E</button>;
             const delButton = removable ? <button className="btn btn-outline-danger" style={{ width: '12%' }} type="button" onClick={this.deleteChannel(id)}>D</button> : null;
             const width = removable ? { width: '76%' } : { width: '88%' };
             const outline = currentChannelId === id ? '' : 'outline-';

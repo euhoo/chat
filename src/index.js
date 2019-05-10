@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
 import chat from './components/index';
 import normalize from './utils/normalize';
 import {
- newChannel, removeChannel, renameChannel, addMessage 
+  newChannel, removeChannel, renameChannel, addMessage,
 } from './utils/serverAnswerFunctions';
 import reducers from './reducers';
 
