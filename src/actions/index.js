@@ -5,3 +5,5 @@ export const removeChannelAction = createAction('CHANNEL_REMOVE');
 export const renameChannelAction = createAction('CHANNEL_RENAME');
 export const addMessageAction = createAction('MESSAGE_ADD');
 export const changeChannelAction = createAction('CHANNEL_CHANGE');
+export const closeModalAction = createAction('MODAL_CLOSE');
+export const openModalAction = createAction('MODAL_OPEN');

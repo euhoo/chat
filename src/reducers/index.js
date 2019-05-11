@@ -4,6 +4,7 @@ import { handleActions } from 'redux-actions';
 import { reducer as formReducer } from 'redux-form';
 import {
   addChannelAction, removeChannelAction, renameChannelAction, addMessageAction, changeChannelAction,
+  openModalAction, closeModalAction,
 } from '../actions';
 
 const channels = handleActions({
@@ -24,7 +25,6 @@ const channels = handleActions({
     };
   },
   [renameChannelAction]: (state, action) => {
-    
     const { id, name } = action.payload.data.attributes;
     const newState = { ...state };
     newState.byId[id].name = name;
@@ -50,9 +50,19 @@ const currentChannelId = handleActions({
   },
 }, '');
 
+const modal = handleActions({
+  [openModalAction](state, { payload: { data } }) {
+    return { show: true, data };
+  },
+  [closeModalAction]() {
+    return { show: false, data: {} };
+  },
+}, { show: false, data: {} });
+
 export default combineReducers({
   channels,
   messages,
   currentChannelId,
+  modal,
   form: formReducer,
 });

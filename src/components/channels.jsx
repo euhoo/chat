@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+// import RenameModal from './renameModal';
 import appContext from '../utils/appContext';
 import * as actions from '../actions';
 
@@ -16,6 +17,10 @@ const mapStateToProps = ({ channels, currentChannelId }) => {
 @connect(mapStateToProps, actions)
 class Channels extends React.Component {
     static contextType = appContext;
+
+    renameChannel = id => (e) => {
+      e.stopPropagation();
+    }
 
     changeChannel = id => () => {
       // eslint-disable-next-line no-shadow
@@ -48,7 +53,7 @@ class Channels extends React.Component {
             const channel = byId[key];
             const { removable, id, name } = channel;
             const delIcon = removable ? <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteChannel(id)} /> : null;
-            const renameIcon = <FontAwesomeIcon icon={faPencilAlt} className="float-right mr-2" onClick={() => {}} />;
+            const renameIcon = <FontAwesomeIcon icon={faPencilAlt} className="float-right mr-2" onClick={this.renameChannel(id)} />;
             const classes = `btn btn-${currentChannelId === id ? '' : 'outline-'}success w-100`;
             return (
               <React.Fragment key={id}>
@@ -58,6 +63,7 @@ class Channels extends React.Component {
                     {delIcon}
                     {renameIcon}
                   </button>
+                  {/* <RenameModal /> */}
                 </div>
               </React.Fragment>
             );

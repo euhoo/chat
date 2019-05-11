@@ -12,6 +12,7 @@ import {
   newChannel, removeChannel, renameChannel, addMessage,
 } from './utils/serverAnswerFunctions';
 import reducers from './reducers';
+import { userName } from './utils/appContext';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -24,7 +25,7 @@ const store = createStore(
   applyMiddleware(thunk),
 );
 
-chat(store);
+chat(store, userName);
 const socket = io();
 socket.on('newChannel', data => newChannel(data, store));
 socket.on('newMessage', data => addMessage(data, store));
