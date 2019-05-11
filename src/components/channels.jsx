@@ -62,7 +62,7 @@ class Channels extends React.Component {
             const { removable, id, name } = channel;
             const delIcon = removable ? <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteChannel(id)} /> : null;
             const renameIcon = <FontAwesomeIcon icon={faPencilAlt} className="float-right mr-2" onClick={this.renameChannel(id)} />;
-            const classes = `btn btn-${currentChannelId === id ? '' : 'outline-'}secondary w-100 border-0`;
+            const classes = `btn btn-${currentChannelId === id ? '' : 'outline-'}dark w-100 border-0 rounded-0`;
             return (
               <React.Fragment key={id}>
                 <div className="container-fluid">

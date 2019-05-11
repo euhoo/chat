@@ -33,7 +33,7 @@ class renameModal extends React.Component {
     };
     const { modal } = this.props;
     const { show, name } = modal;
-    const classes = 'btn btn-outline-secondary w-100 border-0';
+    const classes = 'btn btn-outline-dark w-100 border-0 rounded-0';
     return (
       <>
         <ReactModal

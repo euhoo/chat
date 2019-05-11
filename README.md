@@ -3,7 +3,7 @@ Minimalistic-design chat
 https://chat-euhoo.herokuapp.com/  
   
 Using:  
-  React & react-context (functional & class-based components)
+  React & react-context (functional & class-based components)  
   Redux & redux-forms  
   @decorators  
   Websockets  
