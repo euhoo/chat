@@ -14,13 +14,16 @@ class App extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
+            <br />
             <RenameChannelForm />
             <Channels />
+            <br />
             <NewChannelsForm />
           </div>
           <div className="col-sm-9">
-            <NewMessagesForm />
+            <br />
             <ChatField />
+            <NewMessagesForm />
           </div>
         </div>
       </div>

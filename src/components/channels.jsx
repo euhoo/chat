@@ -52,7 +52,7 @@ class Channels extends React.Component {
             const classes = `btn btn-${currentChannelId === id ? '' : 'outline-'}success w-100`;
             return (
               <React.Fragment key={id}>
-                <div className="w-100">
+                <div className="container-fluid">
                   <button className={classes} type="button" onClick={this.changeChannel(id)}>
                     {name}
                     {delIcon}
