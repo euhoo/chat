@@ -51,13 +51,16 @@ const currentChannelId = handleActions({
 }, '');
 
 const modal = handleActions({
-  [openModalAction](state, { payload: { data } }) {
-    return { show: true, data };
+  [openModalAction](state, { payload }) {
+    const { name } = payload;
+    const obj = { show: true, name };
+    return obj;
   },
   [closeModalAction]() {
-    return { show: false, data: {} };
+    const obj = { show: false, name: '' };
+    return obj;
   },
-}, { show: false, data: {} });
+}, { show: false, name: '' });
 
 export default combineReducers({
   channels,

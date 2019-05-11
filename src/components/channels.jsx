@@ -2,14 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
-// import RenameModal from './renameModal';
+import RenameModal from './renameModal';
 import appContext from '../utils/appContext';
 import * as actions from '../actions';
 
-const mapStateToProps = ({ channels, currentChannelId }) => {
+const mapStateToProps = ({ channels, currentChannelId, modal }) => {
   const props = {
     channels,
     currentChannelId,
+    modal,
   };
   return props;
 };
@@ -18,8 +19,11 @@ const mapStateToProps = ({ channels, currentChannelId }) => {
 class Channels extends React.Component {
     static contextType = appContext;
 
-    renameChannel = id => (e) => {
-      e.stopPropagation();
+    renameChannel = id => () => {
+      const { openModalAction, channels } = this.props;
+      const { name } = channels.byId[id];
+      const data = { name };
+      openModalAction(data);
     }
 
     changeChannel = id => () => {
@@ -63,11 +67,11 @@ class Channels extends React.Component {
                     {delIcon}
                     {renameIcon}
                   </button>
-                  {/* <RenameModal /> */}
                 </div>
               </React.Fragment>
             );
           })}
+          <RenameModal />
         </>
       );
     }

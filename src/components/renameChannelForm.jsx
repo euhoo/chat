@@ -2,16 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import appContext from '../utils/appContext';
-import { renameChannelAction } from '../actions';
+import * as actions from '../actions';
 
-const mapStateToProps = ({ currentChannelId }) => {
+const mapStateToProps = ({ currentChannelId, modal }) => {
   const props = {
     currentChannelId,
+    modal,
   };
   return props;
 };
 
-@connect(mapStateToProps, { renameChannelAction })
+@connect(mapStateToProps, actions)
 @reduxForm({ form: 'RenameChannelForm' })
 class RenameChannelForm extends React.Component {
   static contextType = appContext;
@@ -19,7 +20,7 @@ class RenameChannelForm extends React.Component {
    handleSubmit = (value) => {
      const { queries } = this.context;
      const { renameChannel } = queries;
-     const { reset, currentChannelId } = this.props;
+     const { reset, currentChannelId, closeModalAction } = this.props;
      const data = {
        id: currentChannelId,
        attributes: {
@@ -27,6 +28,7 @@ class RenameChannelForm extends React.Component {
        },
      };
      renameChannel(data);
+     closeModalAction();
      reset();
    }
 
