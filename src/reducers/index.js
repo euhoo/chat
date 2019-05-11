@@ -24,6 +24,7 @@ const channels = handleActions({
     };
   },
   [renameChannelAction]: (state, action) => {
+    
     const { id, name } = action.payload.data.attributes;
     const newState = { ...state };
     newState.byId[id].name = name;

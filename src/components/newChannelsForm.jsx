@@ -29,7 +29,7 @@ class NewChannelsForm extends React.Component {
      return (
        <form className="form-inline " onSubmit={handleSubmit(this.handleSubmit)}>
          <div className="form-group mx-3">
-           <Field placeholder="new channel" name="text" required component="input" type="text" autoComplete="off" />
+           <Field placeholder="new channel" name="text" required className="form-control" component="input" type="text" autoComplete="off" />
          </div>
        </form>
      );

@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import appContext from '../utils/appContext';
 import * as actions from '../actions';
 
@@ -21,7 +23,8 @@ class Channels extends React.Component {
       changeChannelAction(id);
     }
 
-    deleteChannel = id => () => {
+    deleteChannel = id => (e) => {
+      e.stopPropagation();
       const { queries } = this.context;
       // eslint-disable-next-line no-shadow
       const { channels, changeChannelAction, currentChannelId } = this.props;
@@ -32,10 +35,8 @@ class Channels extends React.Component {
         const idForChange = filtered[0];
         changeChannelAction(idForChange);
       }
-
       deleteChannel(id);
     }
-
 
     render() {
       const { channels, currentChannelId } = this.props;
@@ -46,16 +47,18 @@ class Channels extends React.Component {
           {keys.map((key) => {
             const channel = byId[key];
             const { removable, id, name } = channel;
-            const width = removable ? { width: '76%' } : { width: '88%' };
-            const classes = `btn btn-${currentChannelId === id ? '' : 'outline-'}success`;
-            const channelButtonStyle = { width };
+            const delIcon = removable ? <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteChannel(id)} /> : null;
+            const renameIcon = <FontAwesomeIcon icon={faPencilAlt} className="float-right mr-2" onClick={() => {}} />;
+            const classes = `btn btn-${currentChannelId === id ? '' : 'outline-'}success w-100`;
             return (
               <React.Fragment key={id}>
-                <p className="w-100">
-                  <button className={classes} style={channelButtonStyle} type="button" onClick={this.changeChannel(id)}>{name}</button>
-                  {removable ? <button className="btn btn-outline-danger" style={{ width: '12%' }} type="button" onClick={this.deleteChannel(id)}>D</button> : null}
-                  <button className="btn btn-outline-warning" style={{ width: '12%' }} type="button">E</button>
-                </p>
+                <div className="w-100">
+                  <button className={classes} type="button" onClick={this.changeChannel(id)}>
+                    {name}
+                    {delIcon}
+                    {renameIcon}
+                  </button>
+                </div>
               </React.Fragment>
             );
           })}
