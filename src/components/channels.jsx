@@ -24,12 +24,15 @@ class Channels extends React.Component {
     deleteChannel = id => () => {
       const { queries } = this.context;
       // eslint-disable-next-line no-shadow
-      const { channels, changeChannelAction } = this.props;
-      const { allIds } = channels;
-      const filtered = allIds.filter(item => item !== id);
-      const idForChange = filtered[0];
+      const { channels, changeChannelAction, currentChannelId } = this.props;
       const { deleteChannel } = queries;
-      changeChannelAction(idForChange);
+      if (id === currentChannelId) {
+        const { allIds } = channels;
+        const filtered = allIds.filter(item => item !== id);
+        const idForChange = filtered[0];
+        changeChannelAction(idForChange);
+      }
+
       deleteChannel(id);
     }
 
