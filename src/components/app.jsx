@@ -16,7 +16,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-sm-3">
+          <div className="col-12 col-md-3">
             <br />
             <div style={style}>
               <Channels />
@@ -25,7 +25,7 @@ class App extends React.Component {
             </div>
 
           </div>
-          <div className="col-sm-9">
+          <div className="col-12 col-md-9">
             <br />
             <ChatField />
             <NewMessagesForm />

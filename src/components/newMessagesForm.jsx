@@ -42,7 +42,7 @@ class NewMessagesForm extends React.Component {
      return (
        <form className="form-inline" style={style} onSubmit={handleSubmit(this.handleSubmit)}>
          <div className="input-group mb-3 w-100">
-           <Field placeholder="message" name="text" required className="form-control" component="input" type="text" autoComplete="off" />
+           <Field autoFocus placeholder="message" name="text" required className="form-control" component="input" type="text" autoComplete="off" />
          </div>
        </form>
      );

@@ -33,6 +33,7 @@ class renameModal extends React.Component {
     };
     const { modal } = this.props;
     const { show, name } = modal;
+    const classes = 'btn btn-outline-secondary w-100 border-0';
     return (
       <>
         <ReactModal
@@ -40,12 +41,15 @@ class renameModal extends React.Component {
           contentLabel="Modal"
           style={customStyles}
         >
+          <h3>
+           Rename channel?
+          </h3>
           <p>
             {`Current name: ${name}`}
           </p>
           <RenameChannelForm />
           <br />
-          <button onClick={this.handleCloseModal} type="button">Close</button>
+          <button className={classes} type="button" onClick={this.handleCloseModal}>Close</button>
         </ReactModal>
       </>
     );
