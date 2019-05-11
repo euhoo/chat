@@ -9,14 +9,21 @@ class App extends React.Component {
   static contextType = appContext;
 
   render() {
+    const style = {
+      position: 'sticky',
+      top: '2em',
+    };
     return (
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
             <br />
-            <NewChannelsForm />
-            <Channels />
-            <br />
+            <div style={style}>
+              <Channels />
+              <br />
+              <NewChannelsForm />
+            </div>
+
           </div>
           <div className="col-sm-9">
             <br />

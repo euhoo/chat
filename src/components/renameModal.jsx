@@ -33,7 +33,6 @@ class renameModal extends React.Component {
     };
     const { modal } = this.props;
     const { show, name } = modal;
-    console.log(name);
     return (
       <>
         <ReactModal
@@ -42,8 +41,7 @@ class renameModal extends React.Component {
           style={customStyles}
         >
           <p>
-          Current name:
-            {name}
+            {`Current name: ${name}`}
           </p>
           <RenameChannelForm />
           <br />

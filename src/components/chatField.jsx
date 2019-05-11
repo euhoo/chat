@@ -16,7 +16,7 @@ class ChatField extends React.Component {
     const { messages, currentChannelId } = this.props;
     const filteredMessages = messages.filter(message => message.channelId === currentChannelId);
     return (
-      <div style={{ height: '80vh' }}>
+      <div>
         {filteredMessages.map(message => (
           <div key={message.id}>
             {message.name}

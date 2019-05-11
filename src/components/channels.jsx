@@ -51,14 +51,18 @@ class Channels extends React.Component {
       const { channels, currentChannelId } = this.props;
       const { byId } = channels;
       const keys = Object.keys(byId);
+      const style = {
+        position: 'sticky',
+        top: '2em',
+      };
       return (
-        <>
+        <div style={style}>
           {keys.map((key) => {
             const channel = byId[key];
             const { removable, id, name } = channel;
             const delIcon = removable ? <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteChannel(id)} /> : null;
             const renameIcon = <FontAwesomeIcon icon={faPencilAlt} className="float-right mr-2" onClick={this.renameChannel(id)} />;
-            const classes = `btn btn-${currentChannelId === id ? '' : 'outline-'}success w-100`;
+            const classes = `btn btn-${currentChannelId === id ? '' : 'outline-'}secondary w-100 border-0`;
             return (
               <React.Fragment key={id}>
                 <div className="container-fluid">
@@ -72,7 +76,7 @@ class Channels extends React.Component {
             );
           })}
           <RenameModal />
-        </>
+        </div>
       );
     }
 }
