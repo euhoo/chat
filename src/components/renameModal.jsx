@@ -21,18 +21,35 @@ class renameModal extends React.Component {
   }
 
   render() {
+    const customStyles = {
+      content: {
+        top: '20%',
+        left: '40%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-10%, -10%)',
+      },
+    };
     const { modal } = this.props;
-    const { show } = modal;
+    const { show, name } = modal;
+    console.log(name);
     return (
-      <div>
+      <>
         <ReactModal
           isOpen={show}
-          contentLabel="Minimal Modal Example"
+          contentLabel="Modal"
+          style={customStyles}
         >
+          <p>
+          Current name:
+            {name}
+          </p>
           <RenameChannelForm />
-          <button onClick={this.handleCloseModal} type="button">Close Modal</button>
+          <br />
+          <button onClick={this.handleCloseModal} type="button">Close</button>
         </ReactModal>
-      </div>
+      </>
     );
   }
 }
