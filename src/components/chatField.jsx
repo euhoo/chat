@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
-import {
-  addMessageAction, removeChannelAction, renameChannelAction, changeChannelAction,
-} from '../actions';
+import * as actions from '../actions';
 
 const mapStateToProps = ({ messages, currentChannelId }) => {
   const props = {
@@ -13,15 +10,7 @@ const mapStateToProps = ({ messages, currentChannelId }) => {
   return props;
 };
 
-const actionCreators = {
-  addMessageAction,
-  removeChannelAction,
-  renameChannelAction,
-  changeChannelAction,
-};
-
-@connect(mapStateToProps, actionCreators)
-@withTranslation()
+@connect(mapStateToProps, actions)
 class ChatField extends React.Component {
   render() {
     const { messages, currentChannelId } = this.props;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { withTranslation } from 'react-i18next';
 import appContext from '../utils/appContext';
 import { addMessageAction } from '../actions';
 
@@ -12,12 +11,8 @@ const mapStateToProps = ({ currentChannelId }) => {
   return props;
 };
 
-const actionCreators = {
-  addMessageAction,
-};
-
-@connect(mapStateToProps, actionCreators)
-@withTranslation()
+@connect(mapStateToProps, { addMessageAction })
+@reduxForm({ form: 'NewMessagesForm' })
 class NewMessagesForm extends React.Component {
   static contextType = appContext;
 
@@ -42,13 +37,11 @@ class NewMessagesForm extends React.Component {
      return (
        <form className="form-inline" onSubmit={handleSubmit(this.handleSubmit)}>
          <div className="form-group mx-3">
-           <Field name="text" required component="input" type="text" />
+           <Field placeholder="message" name="text" required component="input" type="text" autoComplete="off" />
          </div>
        </form>
      );
    }
 }
 
-export default reduxForm({
-  form: 'NewMessagesForm',
-})(NewMessagesForm);
+export default NewMessagesForm;

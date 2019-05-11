@@ -1,10 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
 import appContext from '../utils/appContext';
-import {
-  addMessageAction, removeChannelAction, renameChannelAction, changeChannelAction,
-} from '../actions';
+import * as actions from '../actions';
 
 const mapStateToProps = ({ channels, currentChannelId }) => {
   const props = {
@@ -14,15 +11,7 @@ const mapStateToProps = ({ channels, currentChannelId }) => {
   return props;
 };
 
-const actionCreators = {
-  addMessageAction,
-  removeChannelAction,
-  renameChannelAction,
-  changeChannelAction,
-};
-
-@connect(mapStateToProps, actionCreators)
-@withTranslation()
+@connect(mapStateToProps, actions)
 class Channels extends React.Component {
     static contextType = appContext;
 

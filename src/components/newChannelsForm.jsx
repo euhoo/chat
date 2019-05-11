@@ -1,18 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { withTranslation } from 'react-i18next';
 import appContext from '../utils/appContext';
 import { addChannelAction } from '../actions';
 
 const mapStateToProps = () => ({});
 
-const actionCreators = {
-  addChannelAction,
-};
-
-@connect(mapStateToProps, actionCreators)
-@withTranslation()
+@connect(mapStateToProps, { addChannelAction })
+@reduxForm({ form: 'NewChannelsForm' })
 class NewChannelsForm extends React.Component {
   static contextType = appContext;
 
@@ -34,13 +29,11 @@ class NewChannelsForm extends React.Component {
      return (
        <form className="form-inline " onSubmit={handleSubmit(this.handleSubmit)}>
          <div className="form-group mx-3">
-           <Field name="text" required component="input" type="text" value="dfd" />
+           <Field placeholder="new channel" name="text" required component="input" type="text" autoComplete="off" />
          </div>
        </form>
      );
    }
 }
 
-export default reduxForm({
-  form: 'NewChannelsForm',
-})(NewChannelsForm);
+export default NewChannelsForm;
