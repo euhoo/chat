@@ -1,5 +1,3 @@
-// import { userName } from './appContext';
-
 export default ({ channels, messages, currentChannelId }) => {
   const channelFunc = (acc, { id, name, removable }) => {
     const obj = {
@@ -22,28 +20,3 @@ export default ({ channels, messages, currentChannelId }) => {
   };
   return store;
 };
-
-
-/*
-    channels : {
-        byId : {
-            "1" : {
-                id : "1",
-                name : "general",
-                removable: "true",
-            },
-        },
-        allIds : ["1", "2"]
-    },
-    messages : {
-        byId : {
-            "1" : {
-                id : "1",
-                channelId: "1"
-                author : "user1",
-                comment : ".....",
-            },
-        },
-        allIds : ["1", "2", "3", "4", "5"]
-    },
-*/

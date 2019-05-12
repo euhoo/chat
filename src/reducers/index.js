@@ -13,7 +13,7 @@ const channels = handleActions({
     const channel = action.payload.data.attributes;
     return {
       byId: { ...byId, [channel.id]: channel },
-      allIds: [channel.id, ...allIds],
+      allIds: [...allIds, channel.id],
     };
   },
   [removeChannelAction]: (state, action) => {

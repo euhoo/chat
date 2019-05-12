@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
-import RenameModal from './renameModal';
 import appContext from '../utils/appContext';
 import * as actions from '../actions';
 
@@ -22,12 +21,10 @@ class Channels extends React.Component {
     renameChannel = id => () => {
       const { openModalAction, channels } = this.props;
       const { name } = channels.byId[id];
-      const data = { name };
-      openModalAction(data);
+      openModalAction({ name });
     }
 
     changeChannel = id => () => {
-      // eslint-disable-next-line no-shadow
       const { changeChannelAction } = this.props;
       changeChannelAction(id);
     }
@@ -35,7 +32,6 @@ class Channels extends React.Component {
     deleteChannel = id => (e) => {
       e.stopPropagation();
       const { queries } = this.context;
-      // eslint-disable-next-line no-shadow
       const { channels, changeChannelAction, currentChannelId } = this.props;
       const { deleteChannel } = queries;
       if (id === currentChannelId) {
@@ -49,18 +45,17 @@ class Channels extends React.Component {
 
     render() {
       const { channels, currentChannelId } = this.props;
-      const { byId } = channels;
-      const keys = Object.keys(byId);
+      const { byId, allIds } = channels;
       const style = {
         position: 'sticky',
         top: '2em',
       };
       return (
         <div style={style}>
-          {keys.map((key) => {
+          {allIds.map((key) => {
             const channel = byId[key];
             const { removable, id, name } = channel;
-            const delIcon = removable ? <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteChannel(id)} /> : null;
+            const deleteIcon = removable ? <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteChannel(id)} /> : null;
             const renameIcon = <FontAwesomeIcon icon={faPencilAlt} className="float-right mr-2" onClick={this.renameChannel(id)} />;
             const classes = `btn btn-${currentChannelId === id ? '' : 'outline-'}dark w-100 border-0 rounded-0`;
             return (
@@ -68,14 +63,13 @@ class Channels extends React.Component {
                 <div className="container-fluid">
                   <button className={classes} type="button" onClick={this.changeChannel(id)}>
                     {name}
-                    {delIcon}
+                    {deleteIcon}
                     {renameIcon}
                   </button>
                 </div>
               </React.Fragment>
             );
           })}
-          <RenameModal />
         </div>
       );
     }

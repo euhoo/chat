@@ -37,7 +37,16 @@ class RenameChannelForm extends React.Component {
      return (
        <form className="form-inline " onSubmit={handleSubmit(this.handleSubmit)}>
          <div className="form-group mx-3">
-           <Field autoFocus placeholder="New name" name="text" required className="form-control w-100 rounded-0 border-top-0 border-left-0 border-right-0" component="input" type="text" autoComplete="off" />
+           <Field
+             autoFocus
+             placeholder="New name"
+             name="text"
+             required
+             className="form-control w-100 rounded-0 border-top-0 border-left-0 border-right-0"
+             component="input"
+             type="text"
+             autoComplete="off"
+           />
          </div>
        </form>
      );

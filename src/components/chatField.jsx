@@ -14,10 +14,10 @@ const mapStateToProps = ({ messages, currentChannelId }) => {
 class ChatField extends React.Component {
   render() {
     const { messages, currentChannelId } = this.props;
-    const filteredMessages = messages.filter(message => message.channelId === currentChannelId);
+    const currentChannelMessages = messages.filter(m => m.channelId === currentChannelId);
     return (
       <div>
-        {filteredMessages.map(message => (
+        {currentChannelMessages.map(message => (
           <div key={message.id}>
             {message.name}
 :

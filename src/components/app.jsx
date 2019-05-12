@@ -3,6 +3,7 @@ import Channels from './channels';
 import NewMessagesForm from './newMessagesForm';
 import ChatField from './chatField';
 import NewChannelsForm from './newChannelsForm';
+import RenameModal from './renameModal';
 import appContext from '../utils/appContext';
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
             <br />
             <div style={style}>
               <Channels />
+              <RenameModal />
               <br />
               <NewChannelsForm />
             </div>
