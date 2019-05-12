@@ -12,9 +12,15 @@ const renameChannel = data => axios.patch(channelId(data.id), { data });
 
 const addMessage = data => axios.post(messages(data.id), { data });
 
+const makeHerokuNoSleep = () => {
+  axios.get(channels)
+    .catch(() => {});
+};
+
 export default {
   addChannel,
   deleteChannel,
   renameChannel,
   addMessage,
+  makeHerokuNoSleep,
 };
