@@ -53,21 +53,18 @@ class Channels extends React.Component {
       return (
         <div style={style}>
           {allIds.map((key) => {
-            const channel = byId[key];
-            const { removable, id, name } = channel;
+            const { removable, id, name } = byId[key];
             const deleteIcon = removable ? <FontAwesomeIcon icon={faTrash} className="float-right" onClick={this.deleteChannel(id)} /> : null;
-            const renameIcon = <FontAwesomeIcon icon={faPencilAlt} className="float-right mr-2" onClick={this.renameChannel(id)} />;
+            const removeIcon = <FontAwesomeIcon icon={faPencilAlt} className="float-right mr-2" onClick={this.renameChannel(id)} />;
             const classes = `btn btn-${currentChannelId === id ? '' : 'outline-'}dark w-100 border-0 rounded-0`;
             return (
-              <React.Fragment key={id}>
-                <div className="container-fluid">
-                  <button className={classes} type="button" onClick={this.changeChannel(id)}>
-                    {name}
-                    {deleteIcon}
-                    {renameIcon}
-                  </button>
-                </div>
-              </React.Fragment>
+              <div className="container-fluid" key={id}>
+                <button className={classes} type="button" onClick={this.changeChannel(id)}>
+                  {name}
+                  {deleteIcon}
+                  {removeIcon}
+                </button>
+              </div>
             );
           })}
         </div>
