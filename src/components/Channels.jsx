@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import * as actions from '../actions';
+import appContext from '../utils/appContext';
 
 const mapStateToProps = ({ channels, currentChannelId, modal }) => {
   const props = {
@@ -15,6 +16,7 @@ const mapStateToProps = ({ channels, currentChannelId, modal }) => {
 
 @connect(mapStateToProps, actions)
 class Channels extends React.Component {
+  static contextType = appContext;
 
     renameChannel = id => () => {
       const { openModalAction, channels } = this.props;
@@ -29,6 +31,7 @@ class Channels extends React.Component {
 
     deleteChannel = id => (e) => {
       e.stopPropagation();
+      
       const { queries } = this.context;
       const { channels, changeChannelAction, currentChannelId } = this.props;
       const { deleteChannel } = queries;

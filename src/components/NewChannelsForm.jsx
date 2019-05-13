@@ -2,12 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { addChannelAction } from '../actions';
+import appContext from '../utils/appContext';
 
 const mapStateToProps = () => ({});
 
 @connect(mapStateToProps, { addChannelAction })
 @reduxForm({ form: 'NewChannelsForm' })
 class NewChannelsForm extends React.Component {
+  static contextType = appContext;
+
    handleSubmit = (value) => {
      const { queries } = this.context;
      const { addChannel } = queries;
@@ -17,6 +20,7 @@ class NewChannelsForm extends React.Component {
          name: value.text,
        },
      };
+     
      addChannel(data);
      reset();
    }
