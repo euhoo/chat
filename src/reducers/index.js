@@ -48,6 +48,10 @@ const currentChannelId = handleActions({
     const newState = action.payload;
     return newState;
   },
+  [removeChannelAction]: (id, action) => {
+    const deletedId = action.payload.data.id;
+    if (deletedId === id) return action.payload.data.channels[0].id;
+  },
 }, '');
 
 const modal = handleActions({

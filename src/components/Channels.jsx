@@ -31,16 +31,8 @@ class Channels extends React.Component {
 
     deleteChannel = id => (e) => {
       e.stopPropagation();
-      
       const { queries } = this.context;
-      const { channels, changeChannelAction, currentChannelId } = this.props;
       const { deleteChannel } = queries;
-      if (id === currentChannelId) {
-        const { allIds } = channels;
-        const filtered = allIds.filter(item => item !== id);
-        const idForChange = filtered[0];
-        changeChannelAction(idForChange);
-      }
       deleteChannel(id);
     }
 

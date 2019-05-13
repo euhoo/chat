@@ -48,10 +48,12 @@ export default (router, io) => {
       state.channels = state.channels.filter(c => c.id !== channelId);
       state.messages = state.messages.filter(m => m.channelId !== channelId);
       ctx.status = 204;
+      const { channels } = state;
       const data = {
         data: {
           type: 'channels',
           id: channelId,
+          channels,
         },
       };
       io.emit('removeChannel', data);
