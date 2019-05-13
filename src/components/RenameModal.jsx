@@ -2,7 +2,7 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import RenameChannelForm from './renameChannelForm';
+import RenameChannelForm from './RenameChannelForm';
 
 const mapStateToProps = ({ modal }) => {
   const props = {

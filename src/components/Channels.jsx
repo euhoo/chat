@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
-import appContext from '../utils/appContext';
 import * as actions from '../actions';
 
 const mapStateToProps = ({ channels, currentChannelId, modal }) => {
@@ -16,7 +15,6 @@ const mapStateToProps = ({ channels, currentChannelId, modal }) => {
 
 @connect(mapStateToProps, actions)
 class Channels extends React.Component {
-    static contextType = appContext;
 
     renameChannel = id => () => {
       const { openModalAction, channels } = this.props;

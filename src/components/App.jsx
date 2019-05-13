@@ -1,14 +1,11 @@
 import React from 'react';
-import Channels from './channels';
-import NewMessagesForm from './newMessagesForm';
-import ChatField from './chatField';
-import NewChannelsForm from './newChannelsForm';
-import RenameModal from './renameModal';
-import appContext from '../utils/appContext';
+import Channels from './Channels';
+import NewMessagesForm from './NewMessagesForm';
+import ChatField from './ChatField';
+import NewChannelsForm from './NewChannelsForm';
+import RenameModal from './RenameModal';
 
 class App extends React.Component {
-  static contextType = appContext;
-
   render() {
     return (
       <div className="container-fluid p-0">
