@@ -4,7 +4,7 @@ import * as actions from '../actions';
 
 const mapStateToProps = ({ messages, currentChannelId }) => {
   const props = {
-    messages,
+    messages: messages.filter(m => m.channelId === currentChannelId).reverse(),
     currentChannelId,
   };
   return props;
@@ -13,11 +13,10 @@ const mapStateToProps = ({ messages, currentChannelId }) => {
 @connect(mapStateToProps, actions)
 class ChatField extends React.Component {
   render() {
-    const { messages, currentChannelId } = this.props;
-    const currentChannelMessages = messages.filter(m => m.channelId === currentChannelId);
+    const { messages } = this.props;
     return (
       <div>
-        {currentChannelMessages.map(message => (
+        {messages.map(message => (
           <div key={message.id}>
             {message.name}
 :

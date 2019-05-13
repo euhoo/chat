@@ -33,7 +33,7 @@ class RenameChannelForm extends React.Component {
    }
 
    render() {
-     const { handleSubmit } = this.props;
+     const { handleSubmit, submitting } = this.props;
      return (
        <form className="form-inline " onSubmit={handleSubmit(this.handleSubmit)}>
          <div className="form-group mx-3">
@@ -46,6 +46,7 @@ class RenameChannelForm extends React.Component {
              component="input"
              type="text"
              autoComplete="off"
+             disable={`"${submitting}"`}
            />
          </div>
        </form>

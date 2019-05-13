@@ -33,14 +33,9 @@ class NewMessagesForm extends React.Component {
    }
 
    render() {
-     const { handleSubmit } = this.props;
-     const style = {
-       position: 'fixed',
-       bottom: '2em',
-       width: '65vw',
-     };
+     const { handleSubmit, submitting } = this.props;
      return (
-       <form className="form-inline" style={style} onSubmit={handleSubmit(this.handleSubmit)}>
+       <form className="form-inline fixed-bottom w-100" onSubmit={handleSubmit(this.handleSubmit)}>
          <div className="input-group mb-3 w-100">
            <Field
              autoFocus
@@ -51,6 +46,7 @@ class NewMessagesForm extends React.Component {
              component="input"
              type="text"
              autoComplete="off"
+             disable={`"${submitting}"`}
            />
          </div>
        </form>

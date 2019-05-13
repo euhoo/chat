@@ -13,7 +13,6 @@ import {
 } from './utils/serverAnswerFunctions';
 import reducers from './reducers';
 import { userName } from './utils/appContext';
-import queries from './utils/queries';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -32,5 +31,3 @@ socket.on('newChannel', data => newChannel(data, store));
 socket.on('newMessage', data => addMessage(data, store));
 socket.on('removeChannel', data => removeChannel(data, store));
 socket.on('renameChannel', data => renameChannel(data, store));
-
-setInterval(() => queries.makeHerokuNoSleep(), 900000);

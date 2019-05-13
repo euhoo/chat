@@ -10,16 +10,12 @@ class App extends React.Component {
   static contextType = appContext;
 
   render() {
-    const style = {
-      position: 'sticky',
-      top: '2em',
-    };
     return (
-      <div className="container">
+      <div className="container-fluid p-0">
         <div className="row">
-          <div className="col-12 col-md-3">
+          <div className=" mr-0 col-12 col-md-3">
             <br />
-            <div style={style}>
+            <div className="sticky-top">
               <Channels />
               <RenameModal />
               <br />

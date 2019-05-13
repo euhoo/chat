@@ -35,7 +35,7 @@ const channels = handleActions({
 const messages = handleActions({
   [addMessageAction]: (state, action) => {
     const { attributes } = action.payload.data;
-    return [attributes, ...state];
+    return [...state, attributes];
   },
   [removeChannelAction]: (state, action) => {
     const { id } = action.payload.data;
