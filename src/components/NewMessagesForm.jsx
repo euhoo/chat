@@ -34,8 +34,15 @@ class NewMessagesForm extends React.Component {
 
    render() {
      const { handleSubmit, submitting } = this.props;
+
+     const style = {
+       position: 'fixed',
+       bottom: '2em',
+       width: '65vw',
+     };
+
      return (
-       <form className="form-inline fixed-bottom w-100" onSubmit={handleSubmit(this.handleSubmit)}>
+       <form className="form-inline" style={style} onSubmit={handleSubmit(this.handleSubmit)}>
          <div className="input-group mb-3 w-100">
            <Field
              autoFocus
